@@ -4,16 +4,20 @@ import { ThemeContext } from 'styled-components';
 import { Container } from './styles';
 import { shade } from 'polished';
 
-export default function Header() {
-  const { colors } = useContext(ThemeContext);
+interface Props {
+  toggleTheme(): void;
+}
+
+const Header: React.FC<Props> = ({ toggleTheme }) => {
+  const { colors, title } = useContext(ThemeContext);
 
   return (
     <Container>
       Hello World
 
-      <ReactSwitch 
-        onChange={() => {}}
-        checked={false}
+      <ReactSwitch
+        onChange={toggleTheme}
+        checked={title === 'dark'}
         checkedIcon={false}
         uncheckedIcon={false}
         height={10}
@@ -25,3 +29,5 @@ export default function Header() {
     </Container>
   );
 }
+
+export default Header;
